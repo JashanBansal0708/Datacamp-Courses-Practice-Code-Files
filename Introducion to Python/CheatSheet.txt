@@ -1,0 +1,205 @@
+In python Everything is Object. They have methods which we say functions that belongs to object
+
++ - * / ** %
+
+int float str bool list
+type(var or value)
+
+int() bool() float() str()
+
+print(type(5+7))
+
+While using boolean with arithematic:True is converted to 1, False is converted to 0.
+_________________________________________________________________________________
+List is an object type. So reference variable
+
+Collection of values: List is a compound data type
+list1 = [1, True, "Jashan", 6.89 , [1,2,3]]
+
+As a data scientist, you'll often be dealing with a lot of data, and it will make sense to group some of this data.
+Instead of creating a flat list containing strings and floats, representing the names and areas of the rooms in your house, you can create a list of lists. 
+
+Access the list by zero based indexing
+list1[0], list1[-1] .........
+
+slicing the list:
+list1[1:3] => 3 excluded
+list1[:2], , list1[2:]
+
+Manipulating or we say Replacing:
+list1[3] = "Jashan", list[0:2] = ["Jashan",1]
+
+Adding lists or extending lists:
+list1 + list2
+
+Removing element
+del(list1[1])
+
+Copy list value:
+list2 = list(list1)
+list2 = list1[:]
+
+Length of list:
+len(list1)
+
+# Same line
+command1; command2
+# Separate lines
+command1
+command2
+
+_________________________________________________________________________________
+
+Functions: Piece of reusable code. Solves a particular task
+
+max(list1)
+len(list1)
+round(1.68,1) => 1.7
+round(1.68) => 2
+help(round)  --------------------------   ?max
+
+
+sorted() takes three arguments: iterable, key and reverse.
+key=None means that if you don't specify the key argument, it will be None. reverse=False means that if you don't specify the reverse argument, it will be False.
+
+_________________________________________________________________________________
+
+Methods: Functions that belongs to objects
+
+list1.index("jashan")
+"jashan".replace("jas","Ma")
+
+
+Some methods change the object on which they call on
+list1.append("jashan")
+
+
+_________________________________________________________________________________
+
+Packages: Directory of python scripts   pkg/mod1.py...mod2.py...mod3.py
+Each script = Module
+Specify functions, Methods, types
+
+import numpy
+import numpy as np
+from numpy import array   (Not professional)
+
+e.g: from scipy.linalg import inv as my_inv
+     my_inv([[1,2], [3,4]])
+
+_________________________________________________________________________________
+
+Numeric python : NumPy 
+Enforce single data type: Speed!
+As a data scientist we have to perform so many operations on the data for which the list is in sufficient.
+
+Alternative to python list : NumPy array
+Calculations over entire array are easy and fast.
+pip3 install numpy
+
+Example:
+np_height = np.array(height)
+np_weight = np.array(weight)
+bmi = np_width/np_height**2
+In regular list, this cause error
+NumPy performs this easily because it assumes that all the values are same
+
+
+np.array([1, "jashan". True])  => Converts each value to strings
+np_array1 + np_array2  => performs additions b/w relative entities
+
+
+bmi = [1,2,3,4,5,6,7,8,9]
+bmi> 6
+bmi[bmi> 6]
+
+1.Numpy arrays cannot contain elements with different types. If you try to build such a list, some of the elements' types are changed to end up with a homogeneous list. This is known as type coercion.
+2.The typical arithmetic operators, such as +, -, * and / have a different meaning for regular Python lists and numpy arrays.
+
+type(np_array)   => numpy.ndarray
+example:
+np_2d = np.array([1,2,3,4,5], [6,7,8,9,10])
+
+
+np_2d[1][2] ===================== np_2d[1,2]
+
+np_2d[:, 1:3]
+
+np_2d.shape
+
+Example:
+
+# regular list of lists
+x = [["a", "b"], ["c", "d"]]
+[x[0][0], x[1][0]]
+
+# numpy
+import numpy as np
+np_x = np.array(x)
+np_x[:,0]
+
+For regular Python lists, this is a real pain. For 2D numpy arrays, however, it's pretty intuitive! The indexes before the comma refer to the rows, while those after the comma refer to the columns. The : is for slicing; in this example, it tells Python to include all rows.
+
+
+Example:
+import numpy as np
+np_mat = np.array([[1, 2],
+                   [3, 4],
+                   [5, 6]])
+np_mat * 2
+np_mat + np.array([10, 10])
+np_mat + np_mat
+
+
+Important Example : convert the units of height and weight to metric (meters and kilograms respectively
+
+# baseball is available as a regular list of lists
+# updated is available as 2D numpy array
+# Import numpy package
+import numpy as np
+# Create np_baseball (3 cols)
+np_baseball = np.array(baseball)
+# Print out addition of np_baseball and updated
+print(np_baseball + updated)
+# Create numpy array: conversion
+conversion = np.array([0.0254, 0.453592, 1])
+# Print out product of np_baseball and conversion
+print(np_baseball * conversion)
+
+
+
+np.mean(np_city[:,0])
+np.median(np_city[:,0])    Height of person in middle if we start from smallest to tallest
+np.corrcoef(np_city[:,0], np_city[:,1])
+np.std(np_city[:,0])
+np.sum()
+np.sort()
+
+
+
+Important: Generate Data
+1.distribution mean
+2.distribution standard deviation
+3.number of samples
+height = np.round(np.random.normal(1.75, 0.20, 5000), 2)
+weight = np.round(np.random.normal(15, 60.32, 5000), 2)
+np_city = np.column_stack((height, weight))
+
+
+Example: You're fairly confident that the median height of goalkeepers is higher than that of other players on the soccer field. Some of your friends don't believe you, so you are determined to show them using the data you received from FIFA and your newly acquired Python skills.
+
+# heights and positions are available as lists
+
+# Import numpy
+import numpy as np
+# Convert positions and heights to numpy arrays: np_positions, np_heights
+np_positions = np.array(positions)
+np_heights = np.array(heights)
+# Heights of the goalkeepers: gk_heights
+gk_heights = np_heights[np_positions == "GK"]
+# Heights of the other players: other_heights
+other_heights = np_heights[np_positions != "GK"]
+# Print out the median height of goalkeepers. Replace 'None'
+print("Median height of goalkeepers: " + str(np.median(gk_heights)))
+# Print out the median height of other players. Replace 'None'
+print("Median height of other players: " + str(np.median(other_heights)))
